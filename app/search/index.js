@@ -1,21 +1,27 @@
+const { get, setWith } = require("lodash");
+
 class Search {
   constructor() {
     this.invertedIndex = {};
   }
 
-  index(rows, { name, identifier }) {
-    this.invertedIndex = rows.reduce((acc, row) => {
-      for (let key in row) {
-        const value = row[key];
-        acc[value] = acc[value] || [];
-        acc[value].push({ id: row[identifier], name });
+  createIndex(rows, { name, model, identifier }) {
+    const index = rows.reduce((acc, row) => {
+      for (let key in model) {
+        const colValue = row[key];
+        const matches = get(acc, [key, colValue], []);
+        const newMatches = [...matches, row[identifier]];
+        setWith(acc, [key, colValue], newMatches, Object);
       }
+
       return acc;
-    }, this.invertedIndex);
+    }, {});
+
+    this.invertedIndex[name] = index;
   }
 
-  query(queryString) {
-    return this.invertedIndex[queryString] || [];
+  query(index, row, queryString) {
+    return get(this.invertedIndex, [index, row, queryString], []);
   }
 }
 

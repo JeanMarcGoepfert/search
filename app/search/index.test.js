@@ -2,23 +2,31 @@ const { expect } = require("chai");
 const Search = require(".");
 
 describe("Search", () => {
-  const mockData = [{ id: "1", value: "foo" }, { id: "2", value: "bar" }];
+  const mockData = [{ id: "1", name: "john" }, { id: "2", name: "jane" }];
+  const fieldsToIndex = {
+    id: String,
+    name: String
+  };
   let search;
 
   beforeEach(() => {
     search = new Search();
   });
 
-  describe("#index", () => {
-    it("should created an inverted index of data provided", () => {
+  describe("#createIndex", () => {
+    it("should create an inverted index of data provided", () => {
       const expected = {
-        "1": [{ id: "1", name: "mock" }],
-        "2": [{ id: "2", name: "mock" }],
-        foo: [{ id: "1", name: "mock" }],
-        bar: [{ id: "2", name: "mock" }]
+        users: {
+          id: { "1": ["1"], "2": ["2"] },
+          name: { john: ["1"], jane: ["2"] }
+        }
       };
 
-      search.index(mockData, { name: "mock", identifier: "id" });
+      search.createIndex(mockData, {
+        name: "users",
+        model: fieldsToIndex,
+        identifier: "id"
+      });
 
       expect(search.invertedIndex).to.deep.equal(expected);
     });
@@ -26,17 +34,21 @@ describe("Search", () => {
 
   describe("#query", () => {
     beforeEach(() => {
-      search.index(mockData, { name: "mock", identifier: "id" });
+      search.createIndex(mockData, {
+        name: "users",
+        model: fieldsToIndex,
+        identifier: "id"
+      });
     });
 
     it("should return references to matching fields", () => {
-      const expected = [{ id: "1", name: "mock" }];
+      const expected = ["1"];
 
-      expect(search.query("foo")).to.deep.equal(expected);
+      expect(search.query("users", "name", "john")).to.deep.equal(expected);
     });
 
     it("should return an empty array when no values match keyword", () => {
-      expect(search.query("nope")).to.deep.equal([]);
+      expect(search.query("users", "name", "jim")).to.deep.equal([]);
     });
   });
 });
