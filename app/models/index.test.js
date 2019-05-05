@@ -2,12 +2,18 @@ const { expect } = require("chai");
 const Base = require(".");
 
 describe("Base", () => {
-  const mockData = [
-    { id: 1, name: "john", tags: ["a", "b"] },
-    { id: 2, name: "jane", tags: ["c", "d"] }
-  ];
-  const indexShape = { id: Number, name: String, tags: Array };
   let model;
+  const mockData = [
+    { id: 1, name: "john", tags: ["a", "b"], banned: true },
+    { id: 2, name: "jane", tags: ["c", "d"], banned: false }
+  ];
+  const invertedIndexMock = {
+    id: { "1": [0], "2": [1] },
+    name: { jane: [1], john: [0] },
+    tags: { a: [0], b: [0], c: [1], d: [1] },
+    banned: { true: [0], false: [1] }
+  };
+  const indexShape = { id: Number, name: String, tags: Array, banned: Boolean };
 
   beforeEach(() => {
     Base.prototype.shape = () => indexShape;
@@ -16,12 +22,7 @@ describe("Base", () => {
 
   describe("#constructor", () => {
     it("should create and store an inverted index", () => {
-      const expected = {
-        id: { "1": [0], "2": [1] },
-        name: { jane: [1], john: [0] },
-        tags: { a: [0], b: [0], c: [1], d: [1] }
-      };
-      expect(model.invertedIndex).to.deep.equal(expected);
+      expect(model.invertedIndex).to.deep.equal(invertedIndexMock);
     });
 
     it("should store given rows", () => {
@@ -31,18 +32,43 @@ describe("Base", () => {
 
   describe("#createIndex", () => {
     it("should return an inverted index", () => {
-      const expected = {
-        id: { "1": [0], "2": [1] },
-        name: { jane: [1], john: [0] },
-        tags: { a: [0], b: [0], c: [1], d: [1] }
-      };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexShape)).to.deep.equal(
+        invertedIndexMock
+      );
     });
 
-    it("should index array values correctly", () => {
+    it("should handle array values correctly", () => {
       const mockData = [{ ids: ["1", "2", "3"] }];
       const indexShape = { ids: Array };
       const expected = { ids: { "1": [0], "2": [0], "3": [0] } };
+      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+    });
+
+    it("should handle boolean values correctly", () => {
+      const mockData = [{ on: true }, { on: false }];
+      const indexShape = { on: Boolean };
+      const expected = { on: { true: [0], false: [1] } };
+      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+    });
+
+    it("should handle missing fields correctly", () => {
+      const mockData = [{ field: "a" }, {}];
+      const indexShape = { field: String };
+      const expected = { field: { "": [1], a: [0] } };
+      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+    });
+
+    it("should handle empty string fields correctly", () => {
+      const mockData = [{ field: "" }];
+      const indexShape = { field: String };
+      const expected = { field: { "": [0] } };
+      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+    });
+
+    it("should handle empty array fields correctly", () => {
+      const mockData = [{ field: []}];
+      const indexShape = { field: String };
+      const expected = { field: { "": [0] } };
       expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
     });
 
@@ -63,6 +89,10 @@ describe("Base", () => {
     });
 
     it("should return matching results for number values", () => {
+      expect(model.query("id", "2")).to.deep.equal([mockData[1]]);
+    });
+
+    it("should return matching results for boolean values", () => {
       expect(model.query("id", "2")).to.deep.equal([mockData[1]]);
     });
 
