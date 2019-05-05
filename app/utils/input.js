@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 
 const asyncPrompt = prompt => {
   return new Promise(resolve => {
-    rl.question(prompt, response => {
+    rl.question(`${prompt}`, response => {
       resolve(response);
     });
   });

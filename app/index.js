@@ -2,6 +2,7 @@ const User = require("./models/user");
 const Organization = require("./models/organization");
 const Ticket = require("./models/ticket");
 const { readJSONFiles } = require("./utils/files");
+const presenter = require("./presenter");
 
 const sources = ["users.json", "tickets.json", "organizations.json"];
 
@@ -13,4 +14,6 @@ const sources = ["users.json", "tickets.json", "organizations.json"];
     tickets: new Ticket(tickets),
     organizations: new Organization(organizations)
   };
+
+  presenter.prompt(DB);
 })();
