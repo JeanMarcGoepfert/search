@@ -4,7 +4,11 @@ const Ticket = require("./models/ticket");
 const { readJSONFiles } = require("./utils/files");
 const presenter = require("./cli");
 
-const sources = ["users.json", "tickets.json", "organizations.json"];
+const sources = [
+  "files/users.json",
+  "files/tickets.json",
+  "files/organizations.json"
+];
 
 async function init() {
   const [users, tickets, organizations] = await readJSONFiles(sources);
