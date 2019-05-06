@@ -2,7 +2,7 @@
   "name": "zd",
   "version": "1.0.0",
   "description": "",
-  "main": "app/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha",
     "format": "prettier --write 'app/**/*.js'"
@@ -15,6 +15,7 @@
     "prettier": "1.17.0"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
     "lodash": "^4.17.11"
   }
 }

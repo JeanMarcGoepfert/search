@@ -2,11 +2,11 @@ const User = require("./models/user");
 const Organization = require("./models/organization");
 const Ticket = require("./models/ticket");
 const { readJSONFiles } = require("./utils/files");
-const presenter = require("./presenter");
+const presenter = require("./cli");
 
 const sources = ["users.json", "tickets.json", "organizations.json"];
 
-(async () => {
+async function init() {
   const [users, tickets, organizations] = await readJSONFiles(sources);
 
   const DB = {
@@ -15,5 +15,7 @@ const sources = ["users.json", "tickets.json", "organizations.json"];
     organizations: new Organization(organizations)
   };
 
-  presenter.prompt(DB);
-})();
+  await presenter.prompt(DB);
+}
+
+module.exports = init;
