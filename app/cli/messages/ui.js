@@ -8,13 +8,15 @@ function searchMeta({ model, field, value, results, nsTaken }) {
   lineBreak();
 
   console.log(
-    `Searched ${chalk.bold(model)} for ${chalk.bold(
+    `Searched for "${chalk.bold(value)}" in ${chalk.bold(
       field
-    )} rows including "${chalk.bold(value)}"`
+    )} in ${chalk.bold(model)}`
   );
 
   console.log(
-    `Found ${results.length} results found in ${nsTaken / BigInt(1000)}μs`
+    `${chalk.bold(results.length)} result(s) found in ${chalk.bold(
+      nsTaken / BigInt(1000)
+    )}μs`
   );
   lineBreak();
 }
@@ -22,7 +24,8 @@ function searchMeta({ model, field, value, results, nsTaken }) {
 function row({ keys, key, row, field }) {
   const longestKey = Math.max(...keys.map(key => key.length));
   const space = Array(longestKey - key.length + 1).join(" ");
-  const output = `${chalk.bold(key)}: ${space} ${row[key] || ""}`;
+  const value = row[key] === undefined ? "" : row[key];
+  const output = `${chalk.bold(key)}: ${space} ${value}`;
 
   if (key === field) {
     console.log(chalk.inverse(output));
