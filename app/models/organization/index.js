@@ -1,4 +1,4 @@
-const Base = require("../");
+const Base = require("../base");
 
 class Organization extends Base {
   shape() {

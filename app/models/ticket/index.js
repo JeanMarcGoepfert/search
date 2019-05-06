@@ -1,4 +1,4 @@
-const Base = require("../");
+const Base = require("../base");
 
 class Ticket extends Base {
   shape() {
