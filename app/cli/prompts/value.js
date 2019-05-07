@@ -1,9 +1,9 @@
-const { asyncPrompt, commands } = require("../../utils/input");
+const { exitablePrompt, commands } = require("../../utils/input");
 
 const question = `Enter a search value\n`;
 
 async function prompt() {
-  const response = await asyncPrompt(question);
+  const response = exitablePrompt(question);
   const isHelp = response === commands.help;
 
   if (isHelp) {

@@ -1,7 +1,7 @@
 const { expect } = require("chai");
-const { asyncPrompt, rl } = require("./input");
+const { exitablePrompt, rl } = require("./input");
 
-describe("asyncPrompt", () => {
+describe("exitablePrompt", () => {
   it("resolves with input provided by user", async () => {
     const input = "answer!";
 

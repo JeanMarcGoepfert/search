@@ -1,4 +1,4 @@
-const { asyncPrompt, commands } = require("../../utils/input");
+const { exitablePrompt, commands } = require("../../utils/input");
 
 const responseMap = { "1": "users", "2": "tickets", "3": "organizations" };
 const question = `Please select \
@@ -12,7 +12,7 @@ function validate(response) {
 }
 
 async function prompt() {
-  const response = await asyncPrompt(question);
+  const response = await exitablePrompt(question);
   const isValid = validate(response);
   const isHelp = response === commands.help;
 

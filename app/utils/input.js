@@ -10,7 +10,7 @@ const commands = {
   help: "help"
 };
 
-const asyncPrompt = prompt => {
+const exitablePrompt = prompt => {
   return new Promise(resolve => {
     rl.question(`${prompt}`, input => {
       const response = input.trim();
@@ -25,7 +25,7 @@ const asyncPrompt = prompt => {
 };
 
 module.exports = {
-  asyncPrompt,
+  exitablePrompt,
   rl,
   commands
 };
