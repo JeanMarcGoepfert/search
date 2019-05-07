@@ -4,8 +4,16 @@ function lineBreak() {
   console.log("-------------------------------");
 }
 
+function sectionBreak() {
+  console.log("###############################");
+}
+
+function emptyLine() {
+  console.log("");
+}
+
 function searchMeta({ model, field, value, results, nsTaken }) {
-  lineBreak();
+  sectionBreak();
 
   console.log(
     `Searched for "${chalk.bold(value)}" in ${chalk.bold(
@@ -18,7 +26,8 @@ function searchMeta({ model, field, value, results, nsTaken }) {
       nsTaken / BigInt(1000)
     )}μs`
   );
-  lineBreak();
+  sectionBreak();
+  emptyLine();
 }
 
 function row({ keys, key, row, field }) {
@@ -34,8 +43,59 @@ function row({ keys, key, row, field }) {
   }
 }
 
+function organizations(organizations) {
+  console.log(chalk.bold("Organization:"));
+  organizations.forEach(org => console.log(`${org.name}`));
+}
+
+function submittedTickets(tickets) {
+  console.log(chalk.bold("Submitted Tickets: "));
+  tickets.forEach(ticket => console.log(`${ticket.subject}`));
+}
+
+function assignedTickets(tickets) {
+  console.log(chalk.bold("Assigned Tickets:"));
+  tickets.forEach(ticket => console.log(`${ticket.subject}`));
+}
+
+function submitter(users) {
+  console.log(chalk.bold("Submitted by:"));
+  users.forEach(user => console.log(`${user.name}`));
+}
+
+function assignee(users) {
+  console.log(chalk.bold("Assigned to:"));
+  users.forEach(user => console.log(`${user.name}`));
+}
+
+function assignee(users) {
+  console.log(chalk.bold("Assigned to:"));
+  users.forEach(user => console.log(`${user.name}`));
+}
+
+function users(users) {
+  console.log(chalk.bold("Users:"));
+  users.forEach(user => console.log(`${user.name}`));
+}
+
+function tickets(tickets) {
+  console.log(chalk.bold("Tickets:"));
+  tickets.forEach(ticket => console.log(`${ticket.subject}`));
+}
+
 module.exports = {
   lineBreak,
   searchMeta,
-  row
+  row,
+  sectionBreak,
+  emptyLine,
+  related: {
+    organizations,
+    submittedTickets,
+    assignedTickets,
+    submitter,
+    assignee,
+    users,
+    tickets
+  }
 };
