@@ -1,3 +1,4 @@
+const { get } = require("lodash");
 const Base = require("../base");
 
 class User extends Base {
@@ -23,6 +24,22 @@ class User extends Base {
       suspended: Boolean,
       role: String
     };
+  }
+
+  getRelatedData(DB, row, queryString) {
+    const matches = get(this.invertedIndex, [row, queryString], []);
+
+    return matches.map(rowIndex => {
+      const user = this.rows[rowIndex];
+      const organizations = DB.organizations.query("_id", user.organization_id);
+      const submittedTickets = DB.tickets.query("submitter_id", user._id);
+      const assignedTickets = DB.tickets.query("assignee_id", user._id);
+
+      return {
+        row: user,
+        related: { organizations, assignedTickets, submittedTickets }
+      };
+    });
   }
 }
 

@@ -1,7 +1,8 @@
 const ui = require("./ui");
 
 function message({ results, keys, field, value, nsTaken, model }) {
-  results.forEach(row => {
+  results.forEach(({row, related}) => {
+    console.log(related);
     ui.lineBreak();
     keys.forEach(key => ui.row({ keys, key, row, field }));
   });

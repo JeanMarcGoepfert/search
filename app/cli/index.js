@@ -7,7 +7,7 @@ async function prompt(DB) {
   const field = await prompts.field.prompt(DB[model]);
   const value = await prompts.value.prompt();
 
-  const [results, nsTaken] = getResults(DB[model], field, value);
+  const [results, nsTaken] = getResults(DB, model, field, value);
 
   result.message({
     results,
@@ -21,9 +21,9 @@ async function prompt(DB) {
   prompt(DB);
 }
 
-function getResults(model, field, value) {
+function getResults(DB, model, field, value) {
   const start = process.hrtime.bigint();
-  const results = model.query(field, value);
+  const results = DB[model].getRelatedData(DB, field, value);
   const end = process.hrtime.bigint();
   return [results, end - start];
 }
