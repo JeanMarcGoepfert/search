@@ -54,21 +54,21 @@ class User extends Base {
   getAssignedTickets(DB, user) {
     return DB.tickets.query(
       DB.tickets.foreignKeys.user.assignee,
-      user[DB.users.primaryKey]
+      user[this.primaryKey]
     );
   }
 
   getSubmittedTickets(DB, user) {
     return DB.tickets.query(
       DB.tickets.foreignKeys.user.submitter,
-      user[DB.users.primaryKey]
+      user[this.primaryKey]
     );
   }
 
   getOrganizations(DB, user) {
     return DB.organizations.query(
       DB.users.primaryKey,
-      user[DB.users.foreignKeys.organization]
+      user[this.foreignKeys.organization]
     );
   }
 }

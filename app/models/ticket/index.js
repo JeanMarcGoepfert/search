@@ -58,21 +58,21 @@ class Ticket extends Base {
   getSubmitter(DB, ticket) {
     return DB.users.query(
       DB.users.primaryKey,
-      ticket[DB.tickets.foreignKeys.user.submitter]
+      ticket[this.foreignKeys.user.submitter]
     );
   }
 
   getAssignee(DB, ticket) {
     return DB.users.query(
       DB.users.primaryKey,
-      ticket[DB.tickets.foreignKeys.user.assignee]
+      ticket[this.foreignKeys.user.assignee]
     );
   }
 
   getOrganizations(DB, ticket) {
     return DB.organizations.query(
       DB.organizations.primaryKey,
-      ticket[DB.tickets.foreignKeys.organization]
+      ticket[this.foreignKeys.organization]
     );
   }
 }

@@ -39,14 +39,14 @@ class Organization extends Base {
   getUsers(DB, organization) {
     return DB.users.query(
       DB.users.foreignKeys.organization,
-      organization[DB.organizations.primaryKey]
+      organization[this.primaryKey]
     );
   }
 
   getTickets(DB, organization) {
     return DB.tickets.query(
       DB.tickets.foreignKeys.organization,
-      organization[DB.organizations.primaryKey]
+      organization[this.primaryKey]
     );
   }
 }
