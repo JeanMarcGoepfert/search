@@ -1,4 +1,3 @@
-const { asyncPrompt } = require("../utils/input");
 const prompts = require("./prompts");
 const ui = require("./messages/ui");
 const result = require("./messages/result");
