@@ -5,9 +5,20 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+const commands = {
+  exit: "exit",
+  help: "help"
+};
+
 const asyncPrompt = prompt => {
   return new Promise(resolve => {
-    rl.question(`${prompt}`, response => {
+    rl.question(`${prompt}`, input => {
+      const response = input.trim();
+
+      if (response === commands.exit) {
+        process.exit();
+      }
+
       resolve(response);
     });
   });
@@ -15,5 +26,6 @@ const asyncPrompt = prompt => {
 
 module.exports = {
   asyncPrompt,
-  rl
+  rl,
+  commands
 };
