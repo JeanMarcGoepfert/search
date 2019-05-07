@@ -1,5 +1,4 @@
 const ui = require("./ui");
-const chalk = require("chalk");
 
 function message({ results, keys, field, value, nsTaken, model }) {
   ui.emptyLine();
