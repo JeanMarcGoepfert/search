@@ -1,4 +1,4 @@
-const { asyncPrompt } = require("../../utils/input");
+const { asyncPrompt, commands } = require("../../utils/input");
 
 const responseMap = { "1": "users", "2": "tickets", "3": "organizations" };
 const question = `Please select \
@@ -8,21 +8,25 @@ const question = `Please select \
 `;
 
 function validate(response) {
-  const validResponses = ["1", "2", "3"];
-  return validResponses.includes(response);
+  return Object.keys(responseMap).includes(response);
 }
 
 async function prompt() {
-  const input = await asyncPrompt(question);
-  const response = input.trim();
+  const response = await asyncPrompt(question);
   const isValid = validate(response);
+  const isHelp = response === commands.help;
+
+  if (isHelp) {
+    console.log(`\nValid commands are: 1, 2 or 3\n`);
+    return prompt();
+  }
 
   if (!isValid) {
     console.log(`"${response}" is not a valid choice.`);
     return prompt();
-  } else {
-    return responseMap[response];
   }
+
+  return responseMap[response];
 }
 
 module.exports = {

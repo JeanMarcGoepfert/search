@@ -14,4 +14,4 @@ async function readJSONFiles(files) {
 module.exports = {
   readJSONFiles,
   readJSON
-}
+};

@@ -1,11 +1,17 @@
-const { asyncPrompt } = require("../../utils/input");
+const { asyncPrompt, commands } = require("../../utils/input");
 
 const question = `Enter a search value\n`;
 
 async function prompt() {
-  const input = await asyncPrompt(question);
+  const response = await asyncPrompt(question);
+  const isHelp = response === commands.help;
 
-  return input.trim();
+  if (isHelp) {
+    console.log(`\nValid commands are: Any value to search on :)\n`);
+    return prompt();
+  }
+
+  return response;
 }
 
 module.exports = {

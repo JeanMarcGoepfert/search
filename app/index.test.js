@@ -7,9 +7,9 @@ const models = require("./models");
 
 describe("init", () => {
   let readJSONFilesStub;
-  let userModelStub
+  let userModelStub;
   let ticketModelStub;
-  let organizationModelStub
+  let organizationModelStub;
   let promptStub;
 
   before(async () => {

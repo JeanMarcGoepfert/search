@@ -1,4 +1,5 @@
 const chalk = require("chalk");
+const { commands } = require("../../utils/input");
 
 function lineBreak() {
   console.log("-------------------------------");
@@ -10,6 +11,15 @@ function sectionBreak() {
 
 function emptyLine() {
   console.log("");
+}
+
+function welcome() {
+  sectionBreak();
+  console.log(chalk.bold("Welcome to Zendesk Search"));
+  sectionBreak();
+  console.log(`Type '${chalk.bold(commands.exit)}' to exit at any time`);
+  console.log(`Type '${chalk.bold(commands.help)}' to list valid commands`);
+  emptyLine();
 }
 
 function searchMeta({ model, field, value, results, nsTaken }) {
@@ -89,6 +99,7 @@ module.exports = {
   row,
   sectionBreak,
   emptyLine,
+  welcome,
   related: {
     organizations,
     submittedTickets,

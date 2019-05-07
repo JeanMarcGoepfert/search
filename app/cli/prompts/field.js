@@ -1,22 +1,33 @@
-const { asyncPrompt } = require("../../utils/input");
+const { asyncPrompt, commands } = require("../../utils/input");
 
-const question = `Please select the field you want to search on\n`;
+const question = `Please select the field you want to search on (or type help to list valid commands)\n`;
 
 function validate(response, shape) {
   return shape.hasOwnProperty(response);
 }
 
+function printValidCommands(shape) {
+  console.log(`\nValid commands are:`);
+  Object.keys(shape).forEach(key => console.log(key));
+  console.log("");
+}
+
 async function prompt(model) {
-  const input = await asyncPrompt(question);
-  const response = input.trim();
+  const response = await asyncPrompt(question);
   const isValid = validate(response, model.shape());
+  const isHelp = response === commands.help;
+
+  if (isHelp) {
+    printValidCommands(model.shape());
+    return prompt(model);
+  }
 
   if (!isValid) {
     console.log(`"${response}" is not a valid choice.`);
     return prompt(model);
-  } else {
-    return response;
   }
+
+  return response;
 }
 
 module.exports = {

@@ -2,6 +2,7 @@ const ui = require("./ui");
 const chalk = require("chalk");
 
 function message({ results, keys, field, value, nsTaken, model }) {
+  ui.emptyLine();
   results.forEach(({ row, related }) => {
     ui.sectionBreak();
     keys.forEach(key => ui.row({ keys, key, row, field }));

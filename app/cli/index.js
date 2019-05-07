@@ -1,6 +1,12 @@
 const { asyncPrompt } = require("../utils/input");
 const prompts = require("./prompts");
+const ui = require("./messages/ui");
 const result = require("./messages/result");
+
+function init(DB) {
+  ui.welcome();
+  prompt(DB);
+}
 
 async function prompt(DB) {
   const model = await prompts.model.prompt();
@@ -29,6 +35,7 @@ function getResults(DB, model, field, value) {
 }
 
 module.exports = {
+  init,
   prompt,
   getResults
 };
