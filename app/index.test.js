@@ -17,7 +17,7 @@ describe("init", () => {
     userModelStub = sinon.stub(models, "User");
     ticketModelStub = sinon.stub(models, "Ticket");
     organizationModelStub = sinon.stub(models, "Organization");
-    promptStub = sinon.stub(presenter, "prompt").resolves();
+    promptStub = sinon.stub(presenter, "init");
     await init();
   });
 
@@ -51,6 +51,6 @@ describe("init", () => {
   });
 
   it("should prompt the user", () => {
-    expect(presenter.prompt.called).to.be.true;
+    expect(presenter.init.called).to.be.true;
   });
 });

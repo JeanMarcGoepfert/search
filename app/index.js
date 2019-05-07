@@ -17,7 +17,7 @@ async function init() {
     organizations: new models.Organization(organizations)
   };
 
-  await presenter.init(DB);
+  presenter.init(DB);
 }
 
 module.exports = init;
