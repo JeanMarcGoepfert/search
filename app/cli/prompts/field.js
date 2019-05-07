@@ -2,23 +2,23 @@ const { asyncPrompt, commands } = require("../../utils/input");
 
 const question = `Please select the field you want to search on (or type help to list valid commands)\n`;
 
-function validate(response, shape) {
-  return shape.hasOwnProperty(response);
+function validate(response, schema) {
+  return schema.hasOwnProperty(response);
 }
 
-function printValidCommands(shape) {
+function printValidCommands(schema) {
   console.log(`\nValid commands are:`);
-  Object.keys(shape).forEach(key => console.log(key));
+  Object.keys(schema).forEach(key => console.log(key));
   console.log("");
 }
 
 async function prompt(model) {
   const response = await asyncPrompt(question);
-  const isValid = validate(response, model.shape());
+  const isValid = validate(response, model.schema());
   const isHelp = response === commands.help;
 
   if (isHelp) {
-    printValidCommands(model.shape());
+    printValidCommands(model.schema());
     return prompt(model);
   }
 

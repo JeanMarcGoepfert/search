@@ -3,11 +3,11 @@ const { get, setWith } = require("lodash");
 class Base {
   constructor(rows) {
     this.rows = rows;
-    this.invertedIndex = this.createIndex(rows, this.shape());
+    this.invertedIndex = this.createIndex(rows, this.schema());
   }
 
-  shape() {
-    throw new Error("shape method must be implemented");
+  schema() {
+    throw new Error("schema method must be implemented");
   }
 
   query(row, queryString) {
@@ -15,10 +15,10 @@ class Base {
     return matches.map(rowIndex => this.rows[rowIndex]);
   }
 
-  createIndex(rows, shape) {
+  createIndex(rows, schema) {
     return rows.reduce((acc, row, rowIndex) => {
-      for (let field in shape) {
-        const values = this.normalizeValue(row[field], shape[field]);
+      for (let field in schema) {
+        const values = this.normalizeValue(row[field], schema[field]);
 
         values.forEach(value => {
           const existingMathes = get(acc, [field, value], []);

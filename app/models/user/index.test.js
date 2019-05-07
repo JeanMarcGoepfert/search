@@ -9,9 +9,9 @@ describe("User", () => {
     expect(User.prototype instanceof Base).to.be.true;
   });
 
-  describe("#shape", () => {
-    it("returns correct shape", () => {
-      expect(new User([]).shape()).to.deep.equal({
+  describe("#schema", () => {
+    it("returns correct schema", () => {
+      expect(new User([]).schema()).to.deep.equal({
         _id: Number,
         url: String,
         external_id: String,

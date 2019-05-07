@@ -12,7 +12,7 @@ class User extends Base {
     };
   }
 
-  shape() {
+  schema() {
     return {
       _id: Number,
       url: String,

@@ -13,10 +13,10 @@ describe("Base", () => {
     tags: { a: [0], b: [0], c: [1], d: [1] },
     banned: { true: [0], false: [1] }
   };
-  const indexShape = { id: Number, name: String, tags: Array, banned: Boolean };
+  const indexSchema = { id: Number, name: String, tags: Array, banned: Boolean };
 
   beforeEach(() => {
-    Base.prototype.shape = () => indexShape;
+    Base.prototype.schema = () => indexSchema;
     model = new Base(mockData);
   });
 
@@ -32,50 +32,50 @@ describe("Base", () => {
 
   describe("#createIndex", () => {
     it("should return an inverted index", () => {
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(
         invertedIndexMock
       );
     });
 
     it("should handle array values correctly", () => {
       const mockData = [{ ids: ["1", "2", "3"] }];
-      const indexShape = { ids: Array };
+      const indexSchema = { ids: Array };
       const expected = { ids: { "1": [0], "2": [0], "3": [0] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
 
     it("should handle boolean values correctly", () => {
       const mockData = [{ on: true }, { on: false }];
-      const indexShape = { on: Boolean };
+      const indexSchema = { on: Boolean };
       const expected = { on: { true: [0], false: [1] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
 
     it("should handle missing fields correctly", () => {
       const mockData = [{ field: "a" }, {}];
-      const indexShape = { field: String };
+      const indexSchema = { field: String };
       const expected = { field: { "": [1], a: [0] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
 
     it("should handle empty string fields correctly", () => {
       const mockData = [{ field: "" }];
-      const indexShape = { field: String };
+      const indexSchema = { field: String };
       const expected = { field: { "": [0] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
 
     it("should handle empty array fields correctly", () => {
       const mockData = [{ field: [] }];
-      const indexShape = { field: String };
+      const indexSchema = { field: String };
       const expected = { field: { "": [0] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
 
     it("should only index given fields", () => {
-      const indexShape = { name: String };
+      const indexSchema = { name: String };
       const expected = { name: { jane: [1], john: [0] } };
-      expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);
+      expect(model.createIndex(mockData, indexSchema)).to.deep.equal(expected);
     });
   });
 

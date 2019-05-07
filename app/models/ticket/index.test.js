@@ -9,9 +9,9 @@ describe("Ticket", () => {
     expect(Ticket.prototype instanceof Base).to.be.true;
   });
 
-  describe("#shape", () => {
-    it("returns correct shape", () => {
-      expect(new Ticket([]).shape()).to.deep.equal({
+  describe("#schema", () => {
+    it("returns correct schema", () => {
+      expect(new Ticket([]).schema()).to.deep.equal({
         _id: String,
         url: String,
         external_id: String,

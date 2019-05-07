@@ -21,7 +21,7 @@ async function prompt(DB) {
     field,
     value,
     nsTaken,
-    keys: Object.keys(DB[model].shape())
+    keys: Object.keys(DB[model].schema())
   });
 
   prompt(DB);
