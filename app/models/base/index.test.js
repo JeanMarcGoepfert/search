@@ -66,7 +66,7 @@ describe("Base", () => {
     });
 
     it("should handle empty array fields correctly", () => {
-      const mockData = [{ field: []}];
+      const mockData = [{ field: [] }];
       const indexShape = { field: String };
       const expected = { field: { "": [0] } };
       expect(model.createIndex(mockData, indexShape)).to.deep.equal(expected);

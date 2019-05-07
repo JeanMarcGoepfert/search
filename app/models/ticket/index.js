@@ -2,6 +2,21 @@ const { get } = require("lodash");
 const Base = require("../base");
 
 class Ticket extends Base {
+  get primaryKey() {
+    return "_id";
+  }
+
+  get foreignKeys() {
+    return {
+      submitter: "submitter_id",
+      user: {
+        submitter: "submitter_id",
+        assignee: "assignee_id"
+      },
+      organization: "organization_id"
+    };
+  }
+
   shape() {
     return {
       _id: String,
@@ -28,18 +43,37 @@ class Ticket extends Base {
 
     return matches.map(rowIndex => {
       const ticket = this.rows[rowIndex];
-      const organizations = DB.organizations.query(
-        "_id",
-        ticket.organization_id
-      );
-      const submitter = DB.users.query("_id", ticket.submitter_id);
-      const assignee = DB.users.query("_id", ticket.assignee_id);
 
       return {
         row: ticket,
-        related: { organizations, submitter, assignee }
+        related: {
+          organizations: this.getOrganizations(DB, ticket),
+          submitter: this.getSubmitter(DB, ticket),
+          assignee: this.getAssignee(DB, ticket)
+        }
       };
     });
+  }
+
+  getSubmitter(DB, ticket) {
+    return DB.users.query(
+      DB.users.primaryKey,
+      ticket[DB.tickets.foreignKeys.user.submitter]
+    );
+  }
+
+  getAssignee(DB, ticket) {
+    return DB.users.query(
+      DB.users.primaryKey,
+      ticket[DB.tickets.foreignKeys.user.assignee]
+    );
+  }
+
+  getOrganizations(DB, ticket) {
+    return DB.organizations.query(
+      DB.organizations.primaryKey,
+      ticket[DB.tickets.foreignKeys.organization]
+    );
   }
 }
 

@@ -1,7 +1,11 @@
-const {get} = require("lodash");
+const { get } = require("lodash");
 const Base = require("../base");
 
 class Organization extends Base {
+  get primaryKey() {
+    return "_id";
+  }
+
   shape() {
     return {
       _id: Number,
@@ -21,14 +25,29 @@ class Organization extends Base {
 
     return matches.map(rowIndex => {
       const organization = this.rows[rowIndex];
-      const users = DB.users.query("organization_id", organization._id);
-      const tickets = DB.tickets.query("organization_id", organization._id);
 
       return {
         row: organization,
-        related: { users, tickets }
+        related: {
+          users: this.getUsers(DB, organization),
+          tickets: this.getTickets(DB, organization)
+        }
       };
     });
+  }
+
+  getUsers(DB, organization) {
+    return DB.users.query(
+      DB.users.foreignKeys.organization,
+      organization[DB.organizations.primaryKey]
+    );
+  }
+
+  getTickets(DB, organization) {
+    return DB.tickets.query(
+      DB.tickets.foreignKeys.organization,
+      organization[DB.organizations.primaryKey]
+    );
   }
 }
 
