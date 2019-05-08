@@ -1,2 +1,3 @@
 "app/**/*.test.js"
 --recursive
+--exit
