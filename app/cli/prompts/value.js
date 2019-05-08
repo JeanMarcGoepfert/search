@@ -1,13 +1,13 @@
-const { exitablePrompt, commands } = require("../../utils/input");
+const input = require("../../utils/input");
 
 const question = `Enter a search value\n`;
 
 async function prompt() {
-  const response = exitablePrompt(question);
-  const isHelp = response === commands.help;
+  const response = await input.exitablePrompt(question);
+  const isHelp = response === input.commands.help;
 
   if (isHelp) {
-    console.log(`\nValid commands are: Any value to search on :)\n`);
+    console.log("\nValid commands are: Any value to search on :)\n");
     return prompt();
   }
 
