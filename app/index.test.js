@@ -2,8 +2,16 @@ const { expect } = require("chai");
 const sinon = require("sinon");
 const files = require("./utils/files");
 const presenter = require("./cli");
-const init = require("./");
+const { init, sources } = require("./");
+const { readJSONFiles } = require("./utils/files");
 const models = require("./models");
+
+describe("sources", () => {
+  it("should refer to valid json files", async () => {
+    const response = await readJSONFiles(sources);
+    expect(response).to.exist
+  });
+});
 
 describe("init", () => {
   let readJSONFilesStub;

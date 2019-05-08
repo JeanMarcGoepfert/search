@@ -20,4 +20,7 @@ async function init() {
   presenter.init(DB);
 }
 
-module.exports = init;
+module.exports = {
+  sources,
+  init
+}
