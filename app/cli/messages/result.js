@@ -1,7 +1,7 @@
 const ui = require("./ui");
 const relatedUI = require("./related");
 
-function message({ results, keys, field, value, nsTaken, model }) {
+function print({ results, keys, field, value, nsTaken, model }) {
   ui.emptyLine();
   results.forEach(({ row, related }) => {
     ui.sectionBreak();
@@ -13,5 +13,5 @@ function message({ results, keys, field, value, nsTaken, model }) {
 }
 
 module.exports = {
-  message
+  print
 };

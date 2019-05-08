@@ -14,7 +14,7 @@ async function prompt(DB) {
 
   const [results, nsTaken] = getResults(DB, model, field, value);
 
-  result.message({
+  result.print({
     results,
     model,
     field,
