@@ -12,7 +12,7 @@ class User extends Base {
     };
   }
 
-  schema() {
+  get schema() {
     return {
       _id: Number,
       url: String,

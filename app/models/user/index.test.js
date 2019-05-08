@@ -11,7 +11,7 @@ describe("User", () => {
 
   describe("#schema", () => {
     it("returns correct schema", () => {
-      expect(new User([]).schema()).to.deep.equal({
+      expect(new User([]).schema).to.deep.equal({
         _id: Number,
         url: String,
         external_id: String,

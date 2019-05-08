@@ -3,10 +3,10 @@ const { get, setWith } = require("lodash");
 class Base {
   constructor(rows) {
     this.rows = rows;
-    this.invertedIndex = this.createIndex(rows, this.schema());
+    this.invertedIndex = this.createIndex(rows, this.schema);
   }
 
-  schema() {
+  get schema() {
     throw new Error("schema method must be implemented");
   }
 

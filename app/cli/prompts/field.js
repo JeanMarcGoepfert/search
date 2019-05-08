@@ -14,11 +14,11 @@ function printValidCommands(schema) {
 
 async function prompt(model) {
   const response = await input.exitablePrompt(question);
-  const isValid = validate(response, model.schema());
+  const isValid = validate(response, model.schema);
   const isHelp = response === input.commands.help;
 
   if (isHelp) {
-    printValidCommands(model.schema());
+    printValidCommands(model.schema);
     return prompt(model);
   }
 

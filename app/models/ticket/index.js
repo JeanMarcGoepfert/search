@@ -17,7 +17,7 @@ class Ticket extends Base {
     };
   }
 
-  schema() {
+  get schema() {
     return {
       _id: String,
       url: String,

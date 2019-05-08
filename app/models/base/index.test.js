@@ -13,11 +13,20 @@ describe("Base", () => {
     tags: { a: [0], b: [0], c: [1], d: [1] },
     banned: { true: [0], false: [1] }
   };
-  const indexSchema = { id: Number, name: String, tags: Array, banned: Boolean };
+  const indexSchema = {
+    id: Number,
+    name: String,
+    tags: Array,
+    banned: Boolean
+  };
 
   beforeEach(() => {
-    Base.prototype.schema = () => indexSchema;
-    model = new Base(mockData);
+    class BaseWithSchema extends Base {
+      get schema() {
+        return indexSchema;
+      }
+    }
+    model = new BaseWithSchema(mockData);
   });
 
   describe("#constructor", () => {

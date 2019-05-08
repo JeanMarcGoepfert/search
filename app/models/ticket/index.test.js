@@ -11,7 +11,7 @@ describe("Ticket", () => {
 
   describe("#schema", () => {
     it("returns correct schema", () => {
-      expect(new Ticket([]).schema()).to.deep.equal({
+      expect(new Ticket([]).schema).to.deep.equal({
         _id: String,
         url: String,
         external_id: String,

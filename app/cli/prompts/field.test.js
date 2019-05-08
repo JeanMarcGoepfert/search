@@ -5,9 +5,7 @@ const field = require("./field");
 
 describe("field prompt", () => {
   const mockModel = {
-    schema: () => {
-      return { validKey: "" };
-    }
+    schema: { validKey: "" }
   };
   let result;
 

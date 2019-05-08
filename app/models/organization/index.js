@@ -6,7 +6,7 @@ class Organization extends Base {
     return "_id";
   }
 
-  schema() {
+  get schema() {
     return {
       _id: Number,
       url: String,
