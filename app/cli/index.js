@@ -7,7 +7,7 @@ function init(DB) {
   prompt(DB);
 }
 
-async function prompt(DB) {
+async function prompt(DB, restartOnComplete = true) {
   const model = await prompts.model.prompt();
   const field = await prompts.field.prompt(DB[model]);
   const value = await prompts.value.prompt();
@@ -22,7 +22,9 @@ async function prompt(DB) {
     keys: Object.keys(DB[model].schema)
   });
 
-  prompt(DB);
+  if (restartOnComplete) {
+    prompt(DB);
+  }
 }
 
 module.exports = {
