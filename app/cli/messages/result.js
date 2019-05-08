@@ -1,7 +1,7 @@
 const ui = require("./ui");
 const relatedUI = require("./related");
 
-function print({ results, keys, field, value, nsTaken, model }) {
+function print({ results, keys, field, value, model }) {
   ui.emptyLine();
   results.forEach(({ row, related }) => {
     ui.sectionBreak();
@@ -9,7 +9,7 @@ function print({ results, keys, field, value, nsTaken, model }) {
     relatedUI.print(related);
   });
 
-  ui.searchMeta({ model, field, value, results, nsTaken });
+  ui.searchMeta({ model, field, value, results });
 }
 
 module.exports = {

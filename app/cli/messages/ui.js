@@ -31,11 +31,8 @@ function searchMeta({ model, field, value, results, nsTaken }) {
     )} in ${chalk.bold(model)}`
   );
 
-  console.log(
-    `${chalk.bold(results.length)} result(s) found in ${chalk.bold(
-      nsTaken / BigInt(1000)
-    )}μs`
-  );
+  console.log(`${chalk.bold(results.length)} result(s) found`);
+
   sectionBreak();
   emptyLine();
 }
@@ -59,5 +56,5 @@ module.exports = {
   row,
   sectionBreak,
   emptyLine,
-  welcome,
+  welcome
 };
