@@ -91,7 +91,7 @@ describe("User", () => {
     });
   });
 
-  describe("#getRelatedData", () => {
+  describe("#queryWithRelations", () => {
     it("returns matching users with related data", () => {
       const user = { _id: "1", name: "foo", organization_id: "1" };
       const organization = { _id: "1" };
@@ -101,7 +101,7 @@ describe("User", () => {
         organizations: new Organization([organization]),
         users: new User([user])
       };
-      const result = new User([user]).getRelatedData(DB, "name", "foo");
+      const result = new User([user]).queryWithRelations(DB, "name", "foo");
       expect(result).to.deep.equal([
         {
           row: user,

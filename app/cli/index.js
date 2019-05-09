@@ -12,7 +12,7 @@ async function prompt(DB, restartOnComplete = true) {
   const field = await prompts.field.prompt(DB[model]);
   const value = await prompts.value.prompt();
 
-  const results = DB[model].getRelatedData(DB, field, value);
+  const results = DB[model].queryWithRelations(DB, field, value);
 
   result.print({
     results,

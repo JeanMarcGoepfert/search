@@ -9,7 +9,7 @@ describe("cli prompt function", () => {
   const mockDB = {
     users: {
       schema: "schema",
-      getRelatedData: getDataSpy
+      queryWithRelations: getDataSpy
     }
   };
   const mockResponses = {

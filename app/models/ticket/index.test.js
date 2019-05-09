@@ -93,7 +93,7 @@ describe("Ticket", () => {
     });
   });
 
-  describe("#getRelatedData", () => {
+  describe("#queryWithRelations", () => {
     it("returns matching tickets with related data", () => {
       const ticket = {
         _id: "1",
@@ -110,7 +110,11 @@ describe("Ticket", () => {
         organizations: new Organization([organization]),
         users: new User([user1, user2])
       };
-      const result = new Ticket([ticket]).getRelatedData(DB, "subject", "foo");
+      const result = new Ticket([ticket]).queryWithRelations(
+        DB,
+        "subject",
+        "foo"
+      );
       expect(result).to.deep.equal([
         {
           row: ticket,

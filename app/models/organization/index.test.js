@@ -62,7 +62,7 @@ describe("Organization", () => {
     });
   });
 
-  describe("#getRelatedData", () => {
+  describe("#queryWithRelations", () => {
     it("returns matching organizations with related data", () => {
       const ticket = { _id: "1", organization_id: "1" };
       const user = { _id: "1", organization_id: "1" };
@@ -72,7 +72,7 @@ describe("Organization", () => {
         organizations: new Organization([organization]),
         users: new User([user])
       };
-      const result = new Organization([organization]).getRelatedData(
+      const result = new Organization([organization]).queryWithRelations(
         DB,
         "name",
         "foo"

@@ -20,7 +20,7 @@ class Organization extends Base {
     };
   }
 
-  getRelatedData(DB, row, queryString) {
+  queryWithRelations(DB, row, queryString) {
     const matches = get(this.invertedIndex, [row, queryString], []);
 
     return matches.map(rowIndex => {
