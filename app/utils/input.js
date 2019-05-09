@@ -6,8 +6,7 @@ const rl = readline.createInterface({
 });
 
 const commands = {
-  exit: "exit",
-  help: "help"
+  exit: "exit"
 };
 
 const exitablePrompt = prompt => {

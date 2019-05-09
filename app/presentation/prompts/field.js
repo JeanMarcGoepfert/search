@@ -1,4 +1,5 @@
 const input = require("../../utils/input");
+const commands = require("./commands");
 
 const question = `Please select the field you want to search on (or type help to list valid commands)\n`;
 
@@ -15,7 +16,7 @@ function printValidCommands(schema) {
 async function prompt(model) {
   const response = await input.exitablePrompt(question);
   const isValid = validate(response, model.schema);
-  const isHelp = response === input.commands.help;
+  const isHelp = response === commands.help;
 
   if (isHelp) {
     printValidCommands(model.schema);

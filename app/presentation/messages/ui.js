@@ -1,5 +1,6 @@
 const chalk = require("chalk");
-const { commands } = require("../../utils/input");
+const input = require("../../utils/input");
+const commands = require("../prompts/commands");
 
 function lineBreak() {
   console.log("-------------------------------");
@@ -17,7 +18,7 @@ function welcome() {
   sectionBreak();
   console.log(chalk.bold("Welcome to Zendesk Search"));
   sectionBreak();
-  console.log(`Type '${chalk.bold(commands.exit)}' to exit at any time`);
+  console.log(`Type '${chalk.bold(input.commands.exit)}' to exit at any time`);
   console.log(`Type '${chalk.bold(commands.help)}' to list valid commands`);
   emptyLine();
 }
