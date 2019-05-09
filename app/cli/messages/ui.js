@@ -22,7 +22,7 @@ function welcome() {
   emptyLine();
 }
 
-function searchMeta({ model, field, value, results, nsTaken }) {
+function searchMeta({ model, field, value, results }) {
   sectionBreak();
 
   console.log(
