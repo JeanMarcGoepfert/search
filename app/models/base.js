@@ -16,8 +16,8 @@ class Base {
   }
 
   /* createIndex
-   * creates an inverted index, keyed by field and field name and string
-   * value of the json rows provided.
+   * creates an inverted index, keyed by field name and string
+   * value of the rows provided.
    *
    * eg:
    *
