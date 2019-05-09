@@ -1,10 +1,10 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
-const cli = require(".");
+const presentation = require(".");
 const prompts = require("./prompts");
 const result = require("./messages/result");
 
-describe("cli prompt function", () => {
+describe("presentation prompt function", () => {
   let firstPromptStub = sinon.stub(prompts.model, "prompt");
   const getDataSpy = sinon.spy();
   const mockDB = {
@@ -27,7 +27,7 @@ describe("cli prompt function", () => {
     sinon.stub(prompts.value, "prompt").resolves(mockResponses.value);
     sinon.stub(result, "print");
 
-    cli.prompt(mockDB);
+    presentation.prompt(mockDB);
   });
 
   after(() => {
