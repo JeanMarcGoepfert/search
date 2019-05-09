@@ -1,6 +1,6 @@
 ## Zendesk Data Search CLI Tool
 
-![build](https://api.travis-ci.org/JeanMarcGoepfert/search.svg?branch=master)
+![build](https://api.travis-ci.org/JeanMarcGoepfert/search.svg?branch=master) [![codecov](https://codecov.io/gh/JeanMarcGoepfert/search/branch/master/graph/badge.svg)](https://codecov.io/gh/JeanMarcGoepfert/search)
 
 ### Running
 
