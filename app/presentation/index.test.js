@@ -5,6 +5,7 @@ const prompts = require("./prompts");
 const result = require("./messages/result");
 
 describe("cli prompt function", () => {
+  let firstPromptStub = sinon.stub(prompts.model, "prompt");
   const getDataSpy = sinon.spy();
   const mockDB = {
     users: {
@@ -19,16 +20,18 @@ describe("cli prompt function", () => {
   };
 
   before(() => {
-    sinon.stub(prompts.model, "prompt").resolves(mockResponses.model);
+    //only resolve first call to short circuit recursion loop.
+    firstPromptStub.onCall(0).resolves(mockResponses.model);
+    firstPromptStub.onCall(1).returns(new Promise(() => {}));
     sinon.stub(prompts.field, "prompt").resolves(mockResponses.field);
     sinon.stub(prompts.value, "prompt").resolves(mockResponses.value);
     sinon.stub(result, "print");
 
-    cli.prompt(mockDB, false);
+    cli.prompt(mockDB);
   });
 
   after(() => {
-    prompts.model.prompt.restore();
+    firstPromptStub.restore();
     prompts.field.prompt.restore();
     prompts.value.prompt.restore();
     result.print.restore();
