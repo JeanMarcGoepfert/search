@@ -9,7 +9,7 @@ const models = require("./models");
 describe("sources", () => {
   it("should refer to valid json files", async () => {
     const response = await readJSONFiles(sources);
-    expect(response).to.exist
+    expect(response).to.exist;
   });
 });
 

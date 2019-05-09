@@ -23,4 +23,4 @@ async function init() {
 module.exports = {
   sources,
   init
-}
+};
