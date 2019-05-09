@@ -146,7 +146,7 @@ A more straightforward approach to the data layer would have been to simply filt
 
 **Memory for Speed**
 
-This approach not only stores all the original datasets in memory, but also a seperate index structure for each dataset. Being a command line tool, the target audience of this app will likely be using relatively modern computers, however given enough data, this would eventually become a problem. Some optimizations could be made, such as writing each inverse trees to disk on initialization, and loading only the relevant data on on each search, but I feel the current approach can get a lot of mileage before further optimizations are necessary.
+This approach not only stores all the original datasets in memory, but also a seperate index structure for each dataset. Being a command line tool, the target audience of this app will likely be using relatively modern computers, however given enough data, this would eventually become a problem. Some optimizations could be made, such as writing each inverse tree to disk on initialization, and loading only the relevant data on each search, but I feel the current approach can get a lot of mileage before further optimizations are necessary.
 
 ### Screenshot
 
