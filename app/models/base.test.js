@@ -109,4 +109,30 @@ describe("Base", () => {
       expect(model.query("name", "phil")).to.deep.equal([]);
     });
   });
+
+  describe("#normalizeValue", () => {
+    it("returns string[] when given boolean", () => {
+      expect(model.normalizeValue(true, Boolean)).to.deep.equal(["true"]);
+    });
+
+    it("returns string[] when given number", () => {
+      expect(model.normalizeValue(1, Number)).to.deep.equal(["1"]);
+    });
+
+    it("returns string[] when given string", () => {
+      expect(model.normalizeValue("a", String)).to.deep.equal(["a"]);
+    });
+
+    it("returns string[] when given string[]", () => {
+      expect(model.normalizeValue(["a"], Array)).to.deep.equal(["a"]);
+    });
+
+    it("returns array with empty string when given empty array", () => {
+      expect(model.normalizeValue([], Array)).to.deep.equal([""]);
+    });
+
+    it("returns array with empty string when given undefined", () => {
+      expect(model.normalizeValue(undefined, String)).to.deep.equal([""]);
+    });
+  });
 });
