@@ -126,7 +126,7 @@ The app is split into 2 primary parts, the data layer, and the presentation laye
 
 On initialization, the JSON files are read into memory, and a seperate object is created for each set (user, orgs and tickets).
 
-On creations, the objects store the original dataset (in memory), and generate and store (in memory) an inverted index (as described above) of the dataset their dataset.
+On creations, the objects store the original dataset (in memory), and generate and store (in memory) an inverted index (as described above) of their dataset.
 
 The presentation layer is then initialized, which prompts the user for:
 
@@ -140,14 +140,13 @@ We then print the results, and re-initialize the prompt recursively.
 
 ### Trade Offs
 
-_Simplicity for Speed_
+**Simplicity for Speed**
 
 A more straightforward approach to the data layer would have been to simply filter through the entire dataset every time a user does a search. I opted away from this as I don't believe this would scale well from a performance point of view as the dataset grows larger.
 
-_Memory for Speed_
+**Memory for Speed**
 
-This approach not only stores all the original datasets in memory, but also a seperate index structure for each dataset. Although being a command line tool, the target audience of this app will likely be using it on relatively modern computers, this would eventually become a problem. Some optimizations could be made, such as writing each inverse trees to disk, on initialization, and loading only the relevant on on search, but I feel the current approach can get a lot of mileage before that happens.
-
+This approach not only stores all the original datasets in memory, but also a seperate index structure for each dataset. Being a command line tool, the target audience of this app will likely be using relatively modern computers, however given enough data, this would eventually become a problem. Some optimizations could be made, such as writing each inverse trees to disk on initialization, and loading only the relevant data on on each search, but I feel the current approach can get a lot of mileage before further optimizations are necessary.
 
 ### Screenshot
 
