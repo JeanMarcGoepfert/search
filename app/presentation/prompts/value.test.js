@@ -32,7 +32,6 @@ describe("value prompt", () => {
   });
 
   it("should return input", () => {
-    const expected = "\nValid commands are: Any value to search on :)\n";
     expect(result).to.equal("foo");
   });
 });

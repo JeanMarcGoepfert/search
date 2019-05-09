@@ -48,7 +48,7 @@ const relatedFieldsMap = {
 
 function print(related) {
   ui.emptyLine();
-  for (key in related) {
+  for (let key in related) {
     const handler = relatedFieldsMap[key];
     if (handler) {
       handler(related[key]);

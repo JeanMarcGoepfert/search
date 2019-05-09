@@ -13,7 +13,7 @@ describe("cli message functions", () => {
 
   describe("#organizations", () => {
     it("should log correct output", () => {
-      const result = related.organizations([{ name: "zendesk" }]);
+      related.organizations([{ name: "zendesk" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Organization:");
       expect(logs[1].args[0]).to.include("zendesk");
@@ -22,7 +22,7 @@ describe("cli message functions", () => {
 
   describe("#submittedTickets", () => {
     it("should log correct output", () => {
-      const result = related.submittedTickets([{ subject: "it's broken" }]);
+      related.submittedTickets([{ subject: "it's broken" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Submitted Tickets:");
       expect(logs[1].args[0]).to.include("it's broken");
@@ -31,7 +31,7 @@ describe("cli message functions", () => {
 
   describe("#assignedTickets", () => {
     it("should log correct output", () => {
-      const result = related.assignedTickets([{ subject: "it's broken" }]);
+      related.assignedTickets([{ subject: "it's broken" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Assigned Tickets:");
       expect(logs[1].args[0]).to.include("it's broken");
@@ -40,7 +40,7 @@ describe("cli message functions", () => {
 
   describe("#submitter", () => {
     it("should log correct output", () => {
-      const result = related.submitter([{ name: "john" }]);
+      related.submitter([{ name: "john" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Submitted by:");
       expect(logs[1].args[0]).to.include("john");
@@ -49,7 +49,7 @@ describe("cli message functions", () => {
 
   describe("#assignee", () => {
     it("should log correct output", () => {
-      const result = related.assignee([{ name: "john" }]);
+      related.assignee([{ name: "john" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Assigned to:");
       expect(logs[1].args[0]).to.include("john");
@@ -58,7 +58,7 @@ describe("cli message functions", () => {
 
   describe("#users", () => {
     it("should log correct output", () => {
-      const result = related.users([{ name: "john" }]);
+      related.users([{ name: "john" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Users:");
       expect(logs[1].args[0]).to.include("john");
@@ -67,7 +67,7 @@ describe("cli message functions", () => {
 
   describe("#tickets", () => {
     it("should log correct output", () => {
-      const result = related.tickets([{ subject: "it's broken" }]);
+      related.tickets([{ subject: "it's broken" }]);
       const logs = console.log.getCalls();
       expect(logs[0].args[0]).to.include("Tickets:");
       expect(logs[1].args[0]).to.include("it's broken");
