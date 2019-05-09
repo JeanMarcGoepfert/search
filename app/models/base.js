@@ -47,7 +47,7 @@ class Base {
       case Array:
         return value.length > 0 ? value : emptyValue;
       default:
-        return value;
+        throw new Error("Type is not supported");
     }
   }
 }

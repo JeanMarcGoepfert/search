@@ -134,5 +134,19 @@ describe("Base", () => {
     it("returns array with empty string when given undefined", () => {
       expect(model.normalizeValue(undefined, String)).to.deep.equal([""]);
     });
+
+    it("throws an error for unsupported type", () => {
+      expect(() => model.normalizeValue({ foo: "bar" }, Object)).to.throw(
+        "Type is not supported"
+      );
+    });
+  });
+
+  describe("#shcema", () => {
+    it("throws an error", () => {
+      expect(() => Base.prototype.schema()).to.throw(
+        "schema method must be implemented"
+      );
+    });
   });
 });
