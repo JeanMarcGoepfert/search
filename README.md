@@ -78,7 +78,7 @@ Given the following related data sets:
 
 ```
 users = [
-  { name: "john", organization_id: "1", ...},
+  { name: "john", organization_id: "1" },
 ]
 organizations = [
   { id: "1", name: "zendesk"}
@@ -107,9 +107,9 @@ We get our matches given the model, field, and value:
 
 Which we use to lookup the original dataset:
 
-`users[0]` which results in `{name: "john", organization_id: "2"}`
+`users[0]` which results in `{name: "john", organization_id: "1"}`
 
-For this result, we query on the organizations index with the foreign key value we now have ("2") and the known primary key of organizations (
+For this result, we query on the organizations index with the foreign key value we now have ("1") and the known primary key of organizations (
 "id"):
 
 `index["organizations"]["id"]["2"]` which results in `[{id: "1", name: "zendesk"}]`
