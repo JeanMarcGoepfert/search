@@ -1,3 +1,7 @@
+## Zendesk Data Search CLI Tool
+
+![build](https://api.travis-ci.org/JeanMarcGoepfert/search.svg?branch=master)
+
 ### Running
 
 **Docker:**
