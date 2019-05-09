@@ -1,5 +1,4 @@
 const prompts = require("./index");
-const ui = require("../messages/ui");
 const result = require("../messages/result");
 
 async function prompt(DB) {

@@ -79,7 +79,7 @@ describe("ui functions", () => {
 
     describe("when it is not the row being searched", () => {
       it("should display search result row details", () => {
-        ui.row({...mockArg, key: "role"});
+        ui.row({ ...mockArg, key: "role" });
         const calls = console.log.getCalls();
         expect(calls[0].args[0]).to.include("role");
         expect(calls[0].args[0]).to.include("admin");
@@ -88,7 +88,7 @@ describe("ui functions", () => {
 
     describe("when the value is not defined", () => {
       it("displays the row key", () => {
-        ui.row({...mockArg, row: {}});
+        ui.row({ ...mockArg, row: {} });
         const calls = console.log.getCalls();
         expect(calls[0].args[0]).to.include("name");
       });
