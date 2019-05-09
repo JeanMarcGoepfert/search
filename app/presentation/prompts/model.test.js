@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
 const input = require("../../utils/input");
-const model = require("./model");
+const promptModel = require("./model");
 
 describe("model prompt", () => {
   let result;
@@ -13,7 +13,7 @@ describe("model prompt", () => {
     promptStub.onCall(2).resolves("1");
     sinon.spy(console, "log");
 
-    result = await model.prompt();
+    result = await promptModel();
   });
 
   after(() => {

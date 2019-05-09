@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
 const input = require("../../utils/input");
-const field = require("./field");
+const promptField = require("./field");
 
 describe("field prompt", () => {
   const mockModel = {
@@ -16,7 +16,7 @@ describe("field prompt", () => {
     promptStub.onCall(2).resolves("validKey");
     sinon.spy(console, "log");
 
-    result = await field.prompt(mockModel);
+    result = await promptField(mockModel);
   });
 
   after(() => {

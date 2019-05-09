@@ -1,9 +1,9 @@
-const model = require("./model");
-const field = require("./field");
-const value = require("./value");
+const promptModel = require("./model");
+const promptField = require("./field");
+const promptValue = require("./value");
 
 module.exports = {
-  model,
-  field,
-  value
+  promptModel,
+  promptField,
+  promptValue
 };

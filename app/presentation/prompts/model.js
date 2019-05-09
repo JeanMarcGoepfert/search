@@ -30,6 +30,4 @@ async function prompt() {
   return responseMap[response];
 }
 
-module.exports = {
-  prompt
-};
+module.exports = prompt;

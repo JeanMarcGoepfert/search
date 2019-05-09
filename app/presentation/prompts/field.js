@@ -31,6 +31,4 @@ async function prompt(model) {
   return response;
 }
 
-module.exports = {
-  prompt
-};
+module.exports = prompt;

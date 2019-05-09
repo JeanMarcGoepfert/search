@@ -15,6 +15,4 @@ async function prompt() {
   return response;
 }
 
-module.exports = {
-  prompt
-};
+module.exports = prompt;
