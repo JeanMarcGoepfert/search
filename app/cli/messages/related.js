@@ -36,11 +36,6 @@ function tickets(tickets) {
   tickets.forEach(ticket => console.log(`${ticket.subject}`));
 }
 
-function assignee(users) {
-  console.log(chalk.bold("Assigned to:"));
-  users.forEach(user => console.log(`${user.name}`));
-}
-
 const relatedFieldsMap = {
   organizations,
   submittedTickets,
@@ -62,4 +57,7 @@ function print(related) {
   }
 }
 
-module.exports = { print };
+module.exports = {
+  print,
+  ...relatedFieldsMap
+};
