@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const Base = require(".");
+const Base = require("./base");
 
 describe("Base", () => {
   let model;

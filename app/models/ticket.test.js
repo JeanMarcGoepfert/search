@@ -1,8 +1,8 @@
 const { expect } = require("chai");
-const Ticket = require(".");
-const User = require("../user");
-const Organization = require("../organization");
-const Base = require("../base");
+const Ticket = require("./ticket");
+const User = require("./user");
+const Organization = require("./organization");
+const Base = require("./base");
 
 describe("Ticket", () => {
   it("extends Base model", () => {

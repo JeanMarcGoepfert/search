@@ -1,5 +1,5 @@
 const { get } = require("lodash");
-const Base = require("../base");
+const Base = require("./base");
 
 class Ticket extends Base {
   get primaryKey() {
