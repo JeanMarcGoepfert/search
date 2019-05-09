@@ -1,6 +1,6 @@
 const models = require("./models");
 const files = require("./utils/files");
-const presenter = require("./cli");
+const presentation = require("./presentation");
 
 const sources = [
   "files/users.json",
@@ -17,7 +17,7 @@ async function init() {
     organizations: new models.Organization(organizations)
   };
 
-  presenter.init(DB);
+  presentation.init(DB);
 }
 
 module.exports = {

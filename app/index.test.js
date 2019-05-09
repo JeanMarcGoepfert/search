@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
 const files = require("./utils/files");
-const presenter = require("./cli");
+const presentation = require("./presentation");
 const { init, sources } = require("./");
 const { readJSONFiles } = require("./utils/files");
 const models = require("./models");
@@ -25,7 +25,7 @@ describe("init", () => {
     userModelStub = sinon.stub(models, "User");
     ticketModelStub = sinon.stub(models, "Ticket");
     organizationModelStub = sinon.stub(models, "Organization");
-    promptStub = sinon.stub(presenter, "init");
+    promptStub = sinon.stub(presentation, "init");
     await init();
   });
 
@@ -59,6 +59,6 @@ describe("init", () => {
   });
 
   it("should prompt the user", () => {
-    expect(presenter.init.called).to.be.true;
+    expect(presentation.init.called).to.be.true;
   });
 });
