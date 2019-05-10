@@ -23,7 +23,7 @@ class Base {
    *
    * For the users:
    *
-   * [{name: john, id: 2}, {name: "jane", id: 2}]
+   * [{name: john, id: 1}, {name: "jane", id: 2}]
    *
    * {
    *   id: { "1": [0], "2": [1] },
