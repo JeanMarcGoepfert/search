@@ -8,7 +8,7 @@
 
 1. [Install Docker](https://www.docker.com/get-started)
 2. Build the image: `docker build --tag zen .`
-3. Run `docker run --it zen node ./`
+3. Run `docker run -it zen node ./`
 
 **Locally:**
 
