@@ -42,8 +42,8 @@ class Base {
         const values = this.normalizeValue(row[field], schema[field]);
 
         values.forEach(value => {
-          const existingMathes = get(acc, [field, value], []);
-          setWith(acc, [field, value], [...existingMathes, rowIndex], Object);
+          const existingMatches = get(acc, [field, value], []);
+          setWith(acc, [field, value], [...existingMatches, rowIndex], Object);
         });
       }
 
