@@ -142,7 +142,7 @@ describe("Base", () => {
     });
   });
 
-  describe("#shcema", () => {
+  describe("#schema", () => {
     it("throws an error", () => {
       expect(() => Base.prototype.schema()).to.throw(
         "schema method must be implemented"
